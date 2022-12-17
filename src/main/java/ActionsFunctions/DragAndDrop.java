@@ -28,6 +28,7 @@ public class DragAndDrop {
         WebElement target= driver.findElement(By.xpath("//div[text()='United States']"));
         Actions actions= new Actions(driver);
         actions.dragAndDrop(source,target).build().perform();
+
         Thread.sleep(3000);
         WebElement target1= driver.findElement(By.id("capitals"));
         actions.dragAndDrop(source,target1).perform();

@@ -13,7 +13,6 @@ public class MouseHover {
     public static void main(String[] args) throws InterruptedException {
         MouseHover mouseHover= new MouseHover();
         mouseHover.launchBrowser();
-        mouseHover.login();
         mouseHover.handleMouseHover();
     }
 
@@ -21,37 +20,22 @@ public class MouseHover {
         WebDriverManager.chromedriver().setup();
         driver= new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://opensource-demo.orangehrmlive.com/");
+        driver.get("https://www.amazon.in/");
     }
 
-    void login(){
-
-        WebElement userName= driver.findElement(By.xpath("//input[@id='txtUsername']"));
-        userName.sendKeys("Admin");
-        WebElement password= driver.findElement(By.xpath("//input[@id='txtPassword']"));
-        password.sendKeys("admin123");
-        WebElement loginButton= driver.findElement(By.xpath("//input[@class='button']"));
-        loginButton.click();
-    }
 
     void handleMouseHover() throws InterruptedException {
-        WebElement performance= driver.findElement(By.id("menu__Performance"));
+        WebElement signIn= driver.findElement(By.id("nav-link-accountList-nav-line-1"));
         Actions actions= new Actions(driver);
-        actions.moveToElement(performance).build().perform();
+        actions.moveToElement(signIn).build().perform();
         Thread.sleep(3000);
-        WebElement configure= driver.findElement(By.id("menu_performance_Configure"));
-        actions.moveToElement(configure).perform();
-        Thread.sleep(3000);
-        WebElement tracker= driver.findElement(By.id("menu_performance_addPerformanceTracker"));
-        actions.click(tracker).perform();
-//        WebElement addBtn= driver.findElement(By.id("btnAdd"));
-//        actions.contextClick(addBtn).perform();
-        WebElement myInfo= driver.findElement(By.id("menu_pim_viewMyDetails"));
-        Thread.sleep(2000);
-        myInfo.click();
-        driver.findElement(By.id("btnSave")).click();
-        WebElement middleName= driver.findElement(By.id("personal_txtEmpMiddleName"));
-        actions.sendKeys(middleName,"Testing").perform();
+
+        WebElement account= driver.findElement(By.xpath("//span[text()='Your Account']"));
+        actions.click(account).perform();
+        Thread.sleep(4000);
+
+        WebElement searchBar= driver.findElement(By.id("twotabsearchtextbox"));
+        actions.sendKeys(searchBar,"Laptop").perform();
 
 
     }

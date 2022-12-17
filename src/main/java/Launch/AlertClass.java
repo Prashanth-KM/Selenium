@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+
 public class AlertClass {
     public static void main(String[] args) throws InterruptedException {
         WebDriverManager.chromedriver().setup();
@@ -19,5 +20,9 @@ public class AlertClass {
         Alert alert= driver.switchTo().alert();
         Thread.sleep(5000);
         alert.accept();
+        Thread.sleep(5000);
+        driver.findElement(By.id("confirmButton")).click();
+        Thread.sleep(5000);
+        alert.dismiss();
     }
 }

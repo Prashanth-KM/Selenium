@@ -17,7 +17,6 @@ public class SeleniumWaits {
         driver= new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://opensource-demo.orangehrmlive.com/");
-        Thread.sleep(5000);
         // implicit and  explicit
 
         WebElement dashboard= driver.findElement(By.id("menu_dashboard_index"));
@@ -37,4 +36,6 @@ public class SeleniumWaits {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    // implicit
+    // Explicit
 }

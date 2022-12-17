@@ -11,12 +11,14 @@ public class LaunchBrowser {
         String path= System.getProperty("user.dir")+ File.separator+"src"+File.separator+"main"+File.separator+
               "resources"+File.separator+ "chromedriver";
 
+        System.out.println(path);
+
         System.setProperty("webdriver.chrome.driver",path);
         WebDriver driver= new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://chromedriver.chromium.org/");
-        Thread.sleep(3000);
-        driver.close();
+//        Thread.sleep(3000);
+//        driver.close();
 
     }
 }

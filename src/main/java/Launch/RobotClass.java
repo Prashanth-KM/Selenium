@@ -9,11 +9,12 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class RobotClass {
-    public static void main(String[] args) throws AWTException {
+    public static void main(String[] args) throws AWTException, InterruptedException {
         WebDriverManager.chromedriver().setup();
         WebDriver driver= new ChromeDriver();
         driver.get("https://opensource-demo.orangehrmlive.com/");
-        driver.findElement(By.id("txtUsername")).sendKeys("Admin");
+        Thread.sleep(3000);
+        driver.findElement(By.name("username")).sendKeys("Admin");
         Robot robot= new Robot();
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_A);
@@ -23,6 +24,5 @@ public class RobotClass {
         robot.keyRelease(KeyEvent.VK_DELETE);
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
-
     }
 }

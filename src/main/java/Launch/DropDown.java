@@ -12,50 +12,34 @@ public class DropDown {
     public static void main(String[] args) throws InterruptedException {
         DropDown dropDown= new DropDown();
         dropDown.launchBrowser();
-        dropDown.login();
-        dropDown.navigateToMyInfo();
+        dropDown.handleDropDown();
+        dropDown.handleBySelectClass();
+
     }
 
     void launchBrowser(){
         WebDriverManager.chromedriver().setup();
         driver= new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://opensource-demo.orangehrmlive.com/");
+        driver.get("https://demoqa.com/select-menu");
+
     }
 
-    void login(){
-
-        WebElement userName= driver.findElement(By.xpath("//input[@id='txtUsername']"));
-        userName.sendKeys("Admin");
-        WebElement password= driver.findElement(By.xpath("//input[@id='txtPassword']"));
-        password.sendKeys("admin123");
-        WebElement loginButton= driver.findElement(By.xpath("//input[@class='button']"));
-        loginButton.click();
+    void handleDropDown() throws InterruptedException {
+        driver.findElement(By.xpath("//*[text()='Select Option']")).click();
+        //In the Dom Structure-->Event listeners-->blur--> remove
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[text()='Group 1, option 2']")).click();
     }
 
-    void navigateToMyInfo() throws InterruptedException {
-        driver.findElement(By.id("menu_pim_viewMyDetails")).click();
-        driver.findElement(By.id("btnSave")).click();
-        WebElement firstName= driver.findElement(By.id("personal_txtEmpFirstName"));
-        firstName.clear();
-        firstName.sendKeys("test");
-        WebElement lastName= driver.findElement(By.id("personal_txtEmpLastName"));
-        lastName.clear();
-        lastName.sendKeys("testing");
-
-        WebElement nationalityDropDown= driver.findElement(By.id("personal_cmbNation"));
-        Select select= new Select(nationalityDropDown);
-        select.selectByVisibleText("British");
-        Thread.sleep(4000);
-        select.selectByIndex(1);
-        Thread.sleep(4000);
-        select.selectByValue("82");
-
-        WebElement maritalStatus= driver.findElement(By.xpath("//select[@id='personal_cmbMarital']"));
-        Select select1= new Select(maritalStatus);
-        select1.selectByVisibleText("Single");
+    void handleBySelectClass() throws InterruptedException {
+        WebElement element= driver.findElement(By.id("oldSelectMenu"));
+        Select select = new Select(element);
+        select.selectByVisibleText("Indigo");
         Thread.sleep(3000);
-        select1.selectByValue("Other");
+        select.selectByValue("3");
+        Thread.sleep(3000);
+        select.selectByIndex(0);
 
     }
 }

@@ -12,21 +12,25 @@ public class Frames {
 
     public static void main(String[] args) {
         Frames frames= new Frames();
+        frames.launchBrowser();
         frames.handleFrames();
     }
 
-    void handleFrames(){
+    void launchBrowser(){
         WebDriverManager.chromedriver().setup();
         driver= new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://demoqa.com/frames");
+    }
+
+    void handleFrames(){
         WebElement frame= driver.findElement(By.id("frame1"));
         driver.switchTo().frame(frame);
         String text=driver.findElement(By.id("sampleHeading")).getText();
         System.out.println("Text :" +text);
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//*[text()='Nested Frames']")).click();
-
+        driver.findElement(By.xpath("//*[text()='Alerts']")).click();
     }
+
 
 }
